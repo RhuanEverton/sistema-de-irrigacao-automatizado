@@ -151,5 +151,14 @@ void loop(){
   Firebase.setFloat(firebaseData,"/Umidadeatual", UmidPercent); // ENVIA A VARIAVEL "UmidPercent" PARA A VARIAVEL "umidadeatual" NO BANCO DE DADOS DO FIREBASE
   Firebase.getInt(firebaseData,"/Umidadedesejada", umidade);  // RECEBE A VARIAVEL "Umidadedesejada" DO BANCO DE DADOS DO FIREBASE E AMARZENA NA VARIAVEL "umidade"
     
-     
+      if(UmidPercent < umidade){
+      digitalWrite(bomba, LOW);
+      delay(250);
+      digitalWrite(bomba, HIGH);
+      delay(5000);
+    }
+      else if(UmidPercent >= umidade){
+      digitalWrite(bomba, HIGH);
+    }
+   
 }  
