@@ -13,9 +13,9 @@ const char* password = "sua senha do Wifi";
 
 FirebaseData firebaseData;
 
-byte UmidPercent = 0; // RECEBE A CONVERSAO DA LEITURA ANALOGICA EM PORCENTAGEM DA UMIDADE 
-int ValorAnalog = 0; //  VALOR ANALOGICO DO SENSOR DE UMIDADE
-int umidade = 0;    //   RECEBE A UMIDADE QUE A PESSOA DESEJA MANTER A PLANTA
+byte UmidPercent; // RECEBE A CONVERSAO DA LEITURA ANALOGICA EM PORCENTAGEM DA UMIDADE 
+int ValorAnalog; //  VALOR ANALOGICO DO SENSOR DE UMIDADE
+int umidade;    //   RECEBE A UMIDADE QUE A PESSOA DESEJA MANTER A PLANTA
 
 AsyncWebServer server(80);
 
@@ -152,13 +152,14 @@ void loop(){
   Firebase.getInt(firebaseData,"/Umidadedesejada", umidade);  // RECEBE A VARIAVEL "Umidadedesejada" DO BANCO DE DADOS DO FIREBASE E AMARZENA NA VARIAVEL "umidade"
     
       if(UmidPercent < umidade){
-      digitalWrite(bomba, LOW);
-      delay(250);
-      digitalWrite(bomba, HIGH);
-      delay(5000);
+         digitalWrite(bomba, LOW);
+         delay(250);
+        digitalWrite(bomba, HIGH);
+        delay(5000);
+        loop();
     }
       else if(UmidPercent >= umidade){
-      digitalWrite(bomba, HIGH);
+            digitalWrite(bomba, HIGH);
     }
    
 }  
